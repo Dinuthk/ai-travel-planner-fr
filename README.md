@@ -1,1 +1,1 @@
-# ai-trip-planner
+# ai-travel-planner
