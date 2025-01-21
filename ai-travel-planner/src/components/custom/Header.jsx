@@ -6,7 +6,7 @@ const Header = () => {
     <div className='p-3 shadow flex justify-between items-center px-5'>
       <img src='/logo.svg' />
       <div>
-        <Button>Sign In</Button>
+        <Button>Sign in</Button>
       </div>
     </div>
   )
