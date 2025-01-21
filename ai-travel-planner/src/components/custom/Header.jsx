@@ -1,13 +1,13 @@
 import React from 'react'
-import { Button } from '../button'
+import { Button } from '../ui/button'
 
 const Header = () => {
   return (
     <div className='p-3 shadow flex justify-between items-center px-5'>
-        <img src='/logo.svg'/>
-        <div>
-            <Button>Sign In</Button>
-        </div>
+      <img src='/logo.svg' />
+      <div>
+        <Button>Sign In</Button>
+      </div>
     </div>
   )
 }
