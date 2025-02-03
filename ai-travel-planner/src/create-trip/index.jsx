@@ -1,3 +1,4 @@
+import { Input } from '@/components/ui/input';
 import React, { useState } from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
@@ -12,7 +13,7 @@ const [place,setPlace]=useState();
         Just provide some information about your choice, then we will give some options to you.
       </p>
 
-      <div className='mt-20'>
+      <div className='mt-20 flex flex-col gap-10'>
         <div>
           <h2 className='text-xl my-3 font-medium'>What is your destination?</h2>
           <GooglePlacesAutocomplete
@@ -22,6 +23,10 @@ const [place,setPlace]=useState();
             onChange:(v)=>{setPlace(v);console.log(v)}
           }}
           />
+        </div>
+        <div>
+          <h2 className='text-xl my-3 font-medium'>How many days are you planning your trip</h2>
+        <Input placeholder={'Ex.3'} type='number'/> 
         </div>
       </div>
 
