@@ -1,7 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { chatSession } from '@/service/AIModel';
 import React, { useEffect, useState } from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import { toast } from 'sonner';
 
 function CreateTrip() {
   const [place, setPlace] = useState();
@@ -13,14 +15,24 @@ function CreateTrip() {
     })
   }
 
-  useEffect(()=>{
-console.log(formData);
-  },[formData])
+  useEffect(() => {
+    console.log(formData);
+  }, [formData])
 
-  const OnGenerateTrip=()=>{
-    if(formData?.noOfDays>5){
+  const OnGenerateTrip = async() => {
+    if (formData?.noOfDays > 5 && !formData?.location || !formData?.budget || !formData.traveler) {
+      toast ("Please fill all details")
       return;
     }
+
+    const FINAL_PROMPT=AIP_PROMPT
+    .replace('{location}',formData?.location)
+    .replace('{totslDays}',formData?.noOfDays)
+    .replace('{budget}',formData?.budget)
+    .replace('{traveler}',formData?.traveler)
+
+
+    const result=await chatSession.sendMessage(FINAL_PROMPT);
   }
 
   return (
@@ -44,8 +56,8 @@ console.log(formData);
         </div>
         <div>
           <h2 className='text-xl my-3 font-medium'>How many days are you planning your trip</h2>
-          <Input placeholder={'Ex.3'} type='number' 
-          onChange={(e)=>handleInputChange('noOfDays',e.target.value)}
+          <Input placeholder={'Ex.3'} type='number'
+            onChange={(e) => handleInputChange('noOfDays', e.target.value)}
           />
         </div>
 
