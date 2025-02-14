@@ -1,5 +1,5 @@
 //code of this file in 45:13
-const SelectTrevelsList = [
+export const SelectTrevelsList = [
     {
         id: 1,
         title: 'Beach',
