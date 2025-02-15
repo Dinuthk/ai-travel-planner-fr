@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import { Input } from '@/components/ui/input';
 import { SelectBudgetOptions,SelectTrevelsList } from '@/constants/options';
 import { chatSession } from '@/service/AIModel';
@@ -103,7 +103,7 @@ function CreateTrip() {
       </div>
 
       <div className='my-10 justify-end flex'>
-        <Button onClick={OnGenerateTrip}>Generate Trip</Button>
+        <Button variant="destructive" onClick={OnGenerateTrip}>Generate Trip</Button>
       </div>
     </div>
   );
