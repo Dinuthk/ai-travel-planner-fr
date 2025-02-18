@@ -1,38 +1,50 @@
-const express = require("express")
-const mongoose = require('mongoose')
-const cors = require("cors")
-const EmployeeModel = require('./models/Employee')
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import EmployeeModel from "./models/Employee.js";
+import connectDB from "./config/db.js";
+import dotenv from 'dotenv';
+const port = 3001;
 
-const app = express()
-app.use(express.json())
-app.use(cors())
+dotenv.config(); 
 
-mongoose.connect("mongodb://localhost:27017/employee");
+const app = express();
+app.use(express.json());
+app.use(cors());
 
-app.post("/login", (req, res) => {
-    const{email,password}=req.body;
-    EmployeeModel.findOne({email: email})
-    .then(user=>{
-        if(user){
-            if(password===user.password){
-                res.json("Login Successfull")
+connectDB();
+
+app.get("/", (req, res) => {
+    res.send('API is running');
+})
+
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await EmployeeModel.findOne({ email });
+        if (user) {
+            if (password === user.password) {
+                res.json("Login Successful");
+            } else {
+                res.json("Password didn't match");
             }
-            else{
-                res.json("Password didn't match")
-            }
+        } else {
+            res.json("User not registered");
         }
-        else{
-            res.json("User not registered")
-        }
-    })
-})
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
-app.post('/register', (req, res) => {
-    EmployeeModel.create(req.body)
-        .then(employees => res.json(employees))
-        .catch(err => res.json(err))
-})
+app.post("/register", async (req, res) => {
+    try {
+        const employee = await EmployeeModel.create(req.body);
+        res.json(employee);
+    } catch (err) {
+        res.status(500).json({ error: "Failed to register user" });
+    }
+});
 
-app.listen(3001, () => {
-    console.log("server is running")
-})
+app.listen(port, () => {
+    console.log("Server is running on port 3001");
+});

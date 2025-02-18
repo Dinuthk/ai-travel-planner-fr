@@ -87,7 +87,8 @@ const Header = () => {
       const result = await axios.post('http://localhost:3001/register', { name, email, password });
       console.log(result);
 
-      if (result.data.success) {
+      if (result.data) {
+        console.log(result.data);
         setIsLogin(true);
       }
     } catch (err) {
