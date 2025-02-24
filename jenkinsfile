@@ -5,13 +5,13 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 retry(3) {
-                    git branch: 'development', url: 'https://github.com/Dinuthk/ai-travel-planner-fr/tree/development'
+                    git branch: 'development', url: 'https://github.com/Dinuthk/ai-travel-planner-fr'
                 }
             }
         }
         stage('Build Docker Image') {
             steps {  
-                bat 'docker build -t dinuth324/ai-travel-be:%BUILD_NUMBER% .'
+                bat 'docker build -t dinuth324/ai-travel-fr:%BUILD_NUMBER% .'
             }
         }
         stage('Login to Docker Hub') {
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Push Image') {
             steps {
-                bat 'docker push dinuth324/ai-travel-be:%BUILD_NUMBER%'
+                bat 'docker push dinuth324/ai-travel-fr:%BUILD_NUMBER%'
             }
         }
     }
