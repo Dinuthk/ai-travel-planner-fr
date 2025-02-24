@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "docker run --name travel-fr-container -p 5173:5173 --rm -v /app/node_modules -v D:/Github_work_place/ai-travel-planner:/app -e CHOKIDAR_USEPOLLING=true travel-app",
+    "start": "docker run --name travel-fr-container -p 5173:5173 --rm -v /app/node_modules -v D:/Github_work_place/ai-travel-planner:/app -e CHOKIDAR_USEPOLLING=true sha256:7d804754088273265570e7395fefca22d8b2336e1972b22879c094d664332f6a",
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "lint": "eslint .",
