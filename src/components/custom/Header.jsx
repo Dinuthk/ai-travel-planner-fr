@@ -71,7 +71,7 @@ const Header = () => {
       const result = await axios.post('http://localhost:3001/login', { email, password });
       console.log(result);
 
-      if (result.data === "Login Successful") {
+      if (!result.error) {
         setIsLoggedIn(true);
         closeModal();
       }
