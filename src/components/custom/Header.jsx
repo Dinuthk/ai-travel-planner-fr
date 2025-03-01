@@ -68,7 +68,7 @@ const Header = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const result = await axios.post('http://localhost:3001/login', { email, password });
+      const result = await axios.post('http://localhost:3001/api/v1/users/login', { email, password });
       console.log(result);
 
       if (!result.error) {
@@ -84,7 +84,7 @@ const Header = () => {
     e.preventDefault();
 
     try {
-      const result = await axios.post('http://localhost:3001/register', { name, email, password });
+      const result = await axios.post('http://localhost:3001/api/v1/users/signup', { name, email, password });
       console.log(result);
 
       if (result.data) {
