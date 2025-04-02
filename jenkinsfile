@@ -21,11 +21,11 @@ pipeline {
         stage('Copy Secret File') {
             steps {
                 script {
-                    withCredentials([file(credentialsId: 'main_pem', variable: 'PEM_FILE')]) {
-                        sh 'cp $PEM_FILE $WORKSPACE/jenkinsKey.pem'
-                        sh 'chmod 600 $WORKSPACE/jenkinsKey.pem'
-                    }
-                }
+            withCredentials([file(credentialsId: 'new_ssh_key', variable: 'PEM_FILE')]) {
+                sh 'cp $PEM_FILE $WORKSPACE/jenkinsKey.pem'
+                sh 'chmod 600 $WORKSPACE/jenkinsKey.pem'
+            }
+        }
             }
         }
 
