@@ -113,7 +113,7 @@ const Header = () => {
         {isLoggedIn ? (
           <Button onClick={handleSignOut}>Sign out</Button>
         ) : (
-          <Button onClick={openModal}>Sign in</Button>
+          <Button onClick={openModal}>Sign innn</Button>
         )}
       </div>
 
